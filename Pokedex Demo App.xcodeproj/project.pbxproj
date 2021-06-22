@@ -114,12 +114,12 @@
 		1B8024EB267FBB0500F9C034 /* Pokedex Demo App */ = {
 			isa = PBXGroup;
 			children = (
+				1B8024EC267FBB0500F9C034 /* AppDelegate.swift */,
+				1B8024EE267FBB0500F9C034 /* SceneDelegate.swift */,
 				1B597CA52681975900B2F40F /* Model */,
 				1B597CA62681976000B2F40F /* View */,
 				1B597CA72681976500B2F40F /* ViewModel */,
 				1B597CA82681977F00B2F40F /* Network */,
-				1B8024EC267FBB0500F9C034 /* AppDelegate.swift */,
-				1B8024EE267FBB0500F9C034 /* SceneDelegate.swift */,
 				1B8024F5267FBB0600F9C034 /* Assets.xcassets */,
 				1B8024F7267FBB0600F9C034 /* LaunchScreen.storyboard */,
 				1B8024FA267FBB0600F9C034 /* Info.plist */,
