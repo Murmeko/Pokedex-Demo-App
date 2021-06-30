@@ -5,41 +5,48 @@
 //  Created by Yiğit Erdinç on 22.06.2021.
 //
 
-import UIKit
+import Kingfisher
 
 class PokemonDetailsTableViewController: UITableViewController {
+    
+    @IBOutlet var pokemonDetailsTableView: UITableView!
+    
+    var pokemonId: Int?
+    var pokemonDetailsViewModel = PokemonDetailsViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.title = "Pokemon Details"
+        initViewModel()
+        pokemonDetailsTableView.register(UINib(nibName: Constants.pokemonDetailsCellNibName, bundle: nil), forCellReuseIdentifier: Constants.pokemonDetailsCellIdentifier)
+        pokemonDetailsTableView.dataSource = self
     }
+    
+    func initViewModel(){
+        pokemonDetailsViewModel.reloadTableView = {
+            DispatchQueue.main.async { self.tableView.reloadData() }
+        }
+        pokemonDetailsViewModel.getPokemonDetails(pokemonId!)
+    }
+    
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.pokemonDetailsCellIdentifier, for: indexPath) as! PokemonDetailsTableViewCell
+        let pokemonDetailsTableViewModel = pokemonDetailsViewModel.getCellViewModel()
 
-        // Configure the cell...
+        cell.pokemonDetailCellTitleLabel.text = pokemonDetailsTableViewModel.pokemonName
+        cell.pokemonDetailCellHeightLabel.text = pokemonDetailsTableViewModel.pokemonHeight
+        cell.pokemonDetailCellWeightLabel.text = pokemonDetailsTableViewModel.pokemonWeight
+        cell.pokemonDetailCellImageView.kf.setImage(with: pokemonDetailsTableViewModel.pokemonImageURL)
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
