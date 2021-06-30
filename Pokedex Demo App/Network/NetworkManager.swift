@@ -6,18 +6,20 @@
 //
 
 import Moya
+import Kingfisher
 
-protocol NetworkManagerDelegate {
-    func didGetAllPokemon(data: PokemonData)
-    func didFailWithError(data: Error)
+enum NetworkManagerError: Error {
+  case failedRequest
+  case invalidData
 }
 
 struct NetworkManager {
     let pokeapiProvider = MoyaProvider<Pokeapi>()
     
-    var delegate: NetworkManagerDelegate
+    typealias PokemonDataCompletion = (PokemonData?, NetworkManagerError?) -> ()
+    typealias PokemonImageCompletion = (UIImage?, NetworkManagerError?) -> ()
     
-    func getAllPokemon() {
+    func fetchAllPokemonData(completion: @escaping PokemonDataCompletion) {
         pokeapiProvider.request(.getAllPokemon) { result in
             switch result {
             case let .success(moyaResponse):
@@ -25,13 +27,17 @@ struct NetworkManager {
                     let filteredResponse = try moyaResponse.filterSuccessfulStatusCodes()
                     let moyaResponseJson = try filteredResponse.mapJSON()
                     let allPokemonData = PokemonData(JSON: moyaResponseJson as! [String : Any])
-                    self.delegate.didGetAllPokemon(data: allPokemonData!)
+                    completion(allPokemonData, nil)
                 }
                 catch let error {
-                    print(error)
+                    print("Unable to decode PokeAPI response: \(error.localizedDescription)")
+                    completion(nil, .invalidData)
+                    return
                 }
             case let .failure(error):
-                self.delegate.didFailWithError(data: error)
+                print("Failed request from PokeAPI: \(error.localizedDescription)")
+                completion(nil, .failedRequest)
+                return
             }
         }
     }

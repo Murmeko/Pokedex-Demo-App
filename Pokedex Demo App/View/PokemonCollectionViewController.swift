@@ -5,52 +5,41 @@
 //  Created by Yiğit Erdinç on 22.06.2021.
 //
 
-import UIKit
-
-private let reuseIdentifier = "Cell"
+import Kingfisher
 
 class PokemonCollectionViewController: UICollectionViewController {
 
+    @IBOutlet var pokemonCollectionView: UICollectionView!
+    
+    var pokemonViewModel = PokemonViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        initViewModel()
+        pokemonCollectionView.register(UINib(nibName: Constants.pokemonCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.pokemonCellIdentifier)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    func initViewModel(){
+        pokemonViewModel.reloadTableView = {
+            DispatchQueue.main.async { self.collectionView.reloadData() }
+        }
+        pokemonViewModel.getPokemon()
     }
-    */
-
+    
     // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return pokemonViewModel.numberOfCells
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.pokemonCellIdentifier, for: indexPath) as! PokemonCollectionViewCell
+        let pokemonCollectionCellViewModel = pokemonViewModel.getCellViewModel(at: indexPath)
+        
+        cell.pokemonTitleLabel.text = pokemonCollectionCellViewModel.pokemonName
+        cell.pokemonImageView.kf.setImage(with: pokemonCollectionCellViewModel.pokemonImageURL)
+        
         return cell
     }
 
@@ -86,3 +75,4 @@ class PokemonCollectionViewController: UICollectionViewController {
     */
 
 }
+

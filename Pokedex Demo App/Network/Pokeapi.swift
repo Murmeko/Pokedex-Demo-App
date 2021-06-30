@@ -14,7 +14,7 @@ public enum Pokeapi {
 
 extension Pokeapi: TargetType {
     public var baseURL: URL {
-        return URL(string: "https://pokeapi.co/api/v2/pokemon")!
+        return URL(string: "https://pokeapi.co/api/v2")!
     }
     
     public var path: String {
