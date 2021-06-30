@@ -5,7 +5,7 @@
 //  Created by Yiğit Erdinç on 22.06.2021.
 //
 
-import Kingfisher
+import Foundation
 
 class PokemonViewModel {
     
@@ -25,24 +25,21 @@ class PokemonViewModel {
         }
     }
     
+    func createCell(results: [Results]) {
+        var pokemonId = 1
+        self.pokemonResults = results
+        for result in pokemonResults {
+            self.pokemonCollectionCellViewModels.append(PokemonCollectionCellViewModel(pokemonName: result.name!.capitalized, pokemonImageURL: URL(string: "https://pokeres.bastionbot.org/images/pokemon/\(pokemonId).png")!))
+            pokemonId += 1
+        }
+    }
     
     var numberOfCells: Int {
             return pokemonCollectionCellViewModels.count
     }
-        
-    func getCellViewModel( at indexPath: IndexPath ) -> PokemonCollectionCellViewModel {
-            return pokemonCollectionCellViewModels[indexPath.row]
-    }
     
-    func createCell(results: [Results]) {
-        self.pokemonResults = results
-        var pokemonCollectionCellViewModel = [PokemonCollectionCellViewModel]()
-        var pokemonId = 1
-        for result in pokemonResults {
-            pokemonCollectionCellViewModel.append(PokemonCollectionCellViewModel(pokemonName: result.name!, pokemonImageURL: URL(string: "https://pokeres.bastionbot.org/images/pokemon/\(pokemonId).png")!))
-            pokemonId += 1
-        }
-        pokemonCollectionCellViewModels = pokemonCollectionCellViewModel
+    func getCellViewModel( at indexPath: IndexPath ) -> PokemonCollectionCellViewModel {
+        return pokemonCollectionCellViewModels[indexPath.row]
     }
 }
 

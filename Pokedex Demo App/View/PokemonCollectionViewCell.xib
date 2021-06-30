@@ -21,14 +21,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oKe-T0-nwf">
-                                <rect key="frame" x="10" y="10" width="300" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="bli-Yd-xoG"/>
-                                    <constraint firstAttribute="width" constant="300" id="oXE-i1-SWH"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="357.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWd-Va-tDK">
-                                <rect key="frame" x="10" y="315" width="380" height="75"/>
+                                <rect key="frame" x="10" y="362.5" width="380" height="27.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -39,9 +35,9 @@
                             <constraint firstAttribute="bottom" secondItem="wWd-Va-tDK" secondAttribute="bottom" constant="10" id="1UC-IR-UKB"/>
                             <constraint firstItem="wWd-Va-tDK" firstAttribute="leading" secondItem="xGn-N4-Vxu" secondAttribute="leading" constant="10" id="4bg-fU-3pD"/>
                             <constraint firstItem="wWd-Va-tDK" firstAttribute="top" secondItem="oKe-T0-nwf" secondAttribute="bottom" constant="5" id="Ao3-1x-iut"/>
-                            <constraint firstItem="oKe-T0-nwf" firstAttribute="leading" secondItem="xGn-N4-Vxu" secondAttribute="leading" constant="10" id="Eoz-Hq-a2v"/>
-                            <constraint firstAttribute="trailing" secondItem="oKe-T0-nwf" secondAttribute="trailing" constant="10" id="ZFz-CO-Umh"/>
-                            <constraint firstItem="oKe-T0-nwf" firstAttribute="top" secondItem="xGn-N4-Vxu" secondAttribute="top" constant="10" id="gzA-vw-RKM"/>
+                            <constraint firstItem="oKe-T0-nwf" firstAttribute="leading" secondItem="xGn-N4-Vxu" secondAttribute="leading" id="Eoz-Hq-a2v"/>
+                            <constraint firstAttribute="trailing" secondItem="oKe-T0-nwf" secondAttribute="trailing" id="ZFz-CO-Umh"/>
+                            <constraint firstItem="oKe-T0-nwf" firstAttribute="top" secondItem="xGn-N4-Vxu" secondAttribute="top" id="gzA-vw-RKM"/>
                             <constraint firstAttribute="trailing" secondItem="wWd-Va-tDK" secondAttribute="trailing" constant="10" id="vwo-MT-L69"/>
                         </constraints>
                     </view>

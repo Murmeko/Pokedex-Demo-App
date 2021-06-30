@@ -27,11 +27,11 @@
         <scene sceneID="JBd-zl-OaR">
             <objects>
                 <collectionViewController id="Eq3-SG-FzD" customClass="PokemonCollectionViewController" customModule="Pokedex_Demo_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="AGU-mG-rkd">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" id="AGU-mG-rkd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oCO-bb-2fD">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oCO-bb-2fD">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -46,17 +46,18 @@
                     <navigationItem key="navigationItem" id="79E-PM-wcG"/>
                     <connections>
                         <outlet property="pokemonCollectionView" destination="AGU-mG-rkd" id="ACC-YR-b6s"/>
+                        <segue destination="p7j-V0-lxP" kind="show" identifier="allPokemonToPokemonDetails" id="7kS-Id-xSG"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ha-F8-XGX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="536" y="110"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Pokemon Details Table View Controller-->
         <scene sceneID="ZTn-yi-BWr">
             <objects>
-                <tableViewController id="p7j-V0-lxP" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Uj1-FF-5RX">
+                <tableViewController id="p7j-V0-lxP" customClass="PokemonDetailsTableViewController" customModule="Pokedex_Demo_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Uj1-FF-5RX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -65,6 +66,10 @@
                             <outlet property="delegate" destination="p7j-V0-lxP" id="1fz-mG-Zet"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="fOG-RQ-WUh"/>
+                    <connections>
+                        <outlet property="pokemonDetailsTableView" destination="Uj1-FF-5RX" id="Kz3-Hc-Rdg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dcB-ef-k8z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

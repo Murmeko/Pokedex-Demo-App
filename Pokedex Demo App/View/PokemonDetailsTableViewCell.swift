@@ -9,15 +9,13 @@ import UIKit
 
 class PokemonDetailsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var pokemonDetailCellView: UIView!
+    @IBOutlet weak var pokemonDetailCellImageView: UIImageView!
+    @IBOutlet weak var pokemonDetailCellTitleLabel: UILabel!
+    @IBOutlet weak var pokemonDetailCellHeightLabel: UILabel!
+    @IBOutlet weak var pokemonDetailCellWeightLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

@@ -12,11 +12,13 @@ class PokemonCollectionViewController: UICollectionViewController {
     @IBOutlet var pokemonCollectionView: UICollectionView!
     
     var pokemonViewModel = PokemonViewModel()
+    var selectedPokemonId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Pokemon"
         initViewModel()
-        pokemonCollectionView.register(UINib(nibName: Constants.pokemonCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.pokemonCellIdentifier)
+        initCollectionViewCell()
     }
     
     func initViewModel(){
@@ -24,6 +26,23 @@ class PokemonCollectionViewController: UICollectionViewController {
             DispatchQueue.main.async { self.collectionView.reloadData() }
         }
         pokemonViewModel.getPokemon()
+    }
+    
+    func initCollectionViewCell() {
+        pokemonCollectionView.register(UINib(nibName: Constants.pokemonCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.pokemonCellIdentifier)
+        if let layout = pokemonCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout{
+                layout.minimumLineSpacing = 10
+                layout.minimumInteritemSpacing = 10
+                layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+                let size = CGSize(width:(collectionView!.bounds.width-30)/2, height: 200)
+                layout.itemSize = size
+        }
+        pokemonCollectionView.dataSource = self
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationViewController = segue.destination as! PokemonDetailsTableViewController
+        destinationViewController.pokemonId = self.selectedPokemonId
     }
     
     // MARK: UICollectionViewDataSource
@@ -45,34 +64,10 @@ class PokemonCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDelegate
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedPokemonId = (indexPath.row)+1
+        performSegue(withIdentifier: Constants.allPokemonToPokemonDetailsSegue, sender: self)
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }
 
